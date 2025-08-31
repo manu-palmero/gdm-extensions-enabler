@@ -1,10 +1,12 @@
 #!/bin/bash
 
+. "$dir/funciones.sh"
+
 # ARGUMENTOS
 for arg in "$@"; do
 	case "$arg" in
 	--help | -h)
-		echo "Uso: $0 [--help|-h]"
+		echo "Uso: $0 [--help|-h]" # TODO Actualizar ayuda
 		echo "Este script copia las extensiones de GNOME Shell del usuario actual a la carpeta de GDM y las habilita."
 		salir
 		;;
@@ -17,6 +19,12 @@ for arg in "$@"; do
 		echo "Repositorio: https://github.com/manu-palmero/gdm-extensions-enabler"
 		salir
 		;;
+	--sync-config | -s)
+		# TODO Implementar
+		;;
+	--copy | -c)
+		# TODO Implementar
+		;;
 	--*)
 		salir e "Opción desconocida: $arg
 		Use --help o -h para ver las opciones disponibles."
@@ -27,6 +35,5 @@ done
 dir="$(pwd)"
 dir_extensiones="$dir/salida/extensiones"
 mkdir -p "$dir_extensiones"
-. "$dir/funciones.sh"
 
 comprobar_root
