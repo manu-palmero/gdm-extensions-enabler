@@ -81,7 +81,7 @@ function obtener_extensiones_usuario() {
 	home=$(obtener_home)
 	mapfile -t extensiones_usuario < <(/bin/ls "$home/.local/share/gnome-shell/extensions")
 	if [ "${#extensiones_usuario[@]}" -eq 0 ]; then
-		salir e "No se encontraron extensiones instaladas para el usuario $usuario."
+		salir e "No se encontraron extensiones instaladas para el usuario $(obtener_usuario)."
 	fi
 	echo "${extensiones_usuario[@]}"
 }
@@ -94,8 +94,25 @@ function obtener_extensiones_configuradas() {
 	echo "${extensiones_configuradas[@]}"
 }
 
+function obtener_extensiones_habilitadas() {
+	mapfile -t extensiones_habilitadas < <(gsettings get org.gnome.shell enabled-extensions | sed 's/,/\n/g; s/ //g; s/'\''//g; s/\[//g; s/\]//g')
+	if [ "${#extensiones_habilitadas[@]}" -eq 0 ]; then
+		salir e "No se encontraron extensiones habilitadas para el usuario $(obtener_usuario)."
+	fi
+	echo "${extensiones_habilitadas[@]}"
+}
+
 function copiar_extensiones() {
 	# TODO Implementar
 	true
 }
 
+function sincronizar_configuracion() {
+	# TODO Terminar
+	# Forma de copiar las configuraciones
+	# dconf dump /org/gnome/shell/extensions/extension-ejemplo/ | sudo -u gdm dconf load /org/gnome/shell/extensions/extension-ejemplo/
+	ext_conf=($obtener_extensiones_configuradas)
+	ext_hab=($obtener_extensiones_habilitadas)
+	ext_usr=($obtener_extensiones)
+	
+}
