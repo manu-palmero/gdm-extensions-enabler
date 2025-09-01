@@ -1,6 +1,11 @@
 #!/bin/bash
 
+dir="$(pwd)"
+dir_extensiones="$dir/salida/extensiones"
+mkdir -p "$dir_extensiones"
+
 . "$dir/funciones.sh"
+. "$dir/interfaz.sh"
 
 # ARGUMENTOS
 for arg in "$@"; do
@@ -31,9 +36,5 @@ for arg in "$@"; do
 		;;
 	esac
 done
-
-dir="$(pwd)"
-dir_extensiones="$dir/salida/extensiones"
-mkdir -p "$dir_extensiones"
 
 comprobar_root
