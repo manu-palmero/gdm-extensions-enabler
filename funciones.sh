@@ -104,6 +104,7 @@ function obtener_extensiones_habilitadas() {
 
 function copiar_extensiones() {
 	# TODO Implementar
+	# NOTE Investigar si se pueden hacer enlaces simbolicos hacia las extensiones del usuario
 	true
 }
 
